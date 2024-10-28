@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Shared Folder</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+  <body>
+    <h1>Shared Folder</h1>
+        <% if(error) { %>
+        <p> <%= error %> </p>
+        <% } %>
+        <% if(files.length != 0) { %>
+            <ul>
+                <% files.forEach((f) => { %>
+                    <li>
+                        Folder name: <%= f.originalname %>
+                        Size: <%= f.size %>
+
+                        Date: <% 
+                            const creationDate = new Date(f.created_at); 
+                            const options = { 
+                                year: 'numeric', 
+                                month: 'numeric', 
+                                day: 'numeric', 
+                                hour: '2-digit', 
+                                minute: '2-digit', 
+                                hour12: false 
+                            };
+                            const formattedDate = creationDate.toLocaleString('es-AR', options);
+                        %>
+                        <%= formattedDate %>
+                        <form method="GET" action="/downloadFileShared">
+                            <input type="hidden" name="fileId" value=<%= f.id %> >
+                            <input type="hidden" name="folderId" value=<%= folderId %> >
+                            <button type="submit">Download</button>
+                        </form> 
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+        </div>
+        <a href="/">
+            <span>Go back to home</span>
+        </a>
+  </body>
+</html>
+
+
+

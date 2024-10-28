@@ -1,0 +1,107 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #007BFF; /* Bootstrap primary color */
+}
+
+/* Error Messages */
+p {
+    color: red;
+    text-align: center;
+}
+
+/* Buttons and Links */
+.buttons-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.buttons-container a, .buttons-container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons-container a:hover, .buttons-container button:hover {
+    background-color: #0056b3;
+}
+
+/* File List */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+li form {
+    display: inline;
+}
+
+/* Form Container */
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="file"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+input[type="number"]:focus {
+    border-color: #007BFF;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .buttons-container {
+        flex-direction: column;
+    }
+    
+    .buttons-container a, .buttons-container button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+}

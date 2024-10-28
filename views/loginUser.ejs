@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Log in</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+  <body>
+    <% if(error) { %>
+      <p> <%= error %> </p>
+    <% } %>
+    <h1>Log in</h1>
+    <div class="form-container">
+        <form method="POST" action="/login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Submit</button>
+        </form> 
+    </div>
+    <a href="/">
+      <span>Home</span>
+    </a>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+  <body>
+    <h1>Home</h1>
+    <% if(error) { %>
+      <p> <%= error %> </p>
+    <% } %>
+    <div class="buttons-container">
+        <a href="/register">
+          <span>Register</span>
+        </a>
+        <a href="/login">
+          <span>Login</span>
+        </a>
+        <a href="/folders">
+          <span>Folders</span>
+        </a>
+        <form method="POST" action="/logout">
+          <button type="submit">Logout</button>
+        </form>
+    </div>
+  </body>
+</html>
+
+
+

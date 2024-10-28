@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+        <% if(error) { %>
+        <p> <%= error %> </p>
+        <% } %>
+        <% if(folders.length != 0) { %>
+            <ul>
+                <% folders.forEach((f) => { %>
+                    <li>
+                        Folder name: <%= f.name %>
+                        Date: <% 
+                            const creationDate = new Date(f.created_at); 
+                            const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+                            const formattedDate = creationDate.toLocaleDateString('es-AR', options);
+                        %>
+                        <%= formattedDate %>
+                        <a href="/folder/<%=f.id%>">
+                            <span>Go to folder</span>
+                        </a> 
+                        <form method="POST" action="/deleteFolder">
+                            <input type="hidden" name="folderId" value=<%=f.id%> >
+                            <button type="submit">Delete</button>
+                        </form> 
+                    </li>
+                <% }); %>
+            </ul>
+        <% }  %>
+        <div class="form-container">
+        <form method="POST" action="/createFolder">
+            <label for="name">Folder Name:</label>
+            <input type="text" id="name" name="name">
+            <button type="submit">Submit</button>
+        </form> 
+    </div>
+  </body>
+</html>
+
+
+

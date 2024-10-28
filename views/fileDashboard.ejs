@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+        <% if(error) { %>
+        <p> <%= error %> </p>
+        <% } %>
+        <% if(files.length != 0) { %>
+            <ul>
+                <% files.forEach((f) => { %>
+                    <li>
+                        Folder name: <%= f.originalname %>
+                        Size: <%= f.size %>
+
+                        Date: <% 
+                            const creationDate = new Date(f.created_at); 
+                            const options = { 
+                                year: 'numeric', 
+                                month: 'numeric', 
+                                day: 'numeric', 
+                                hour: '2-digit', 
+                                minute: '2-digit', 
+                                hour12: false 
+                            };
+                            const formattedDate = creationDate.toLocaleString('es-AR', options);
+                        %>
+                        <%= formattedDate %>
+                        <form method="POST" action="/deleteFile">
+                            <input type="hidden" name="fileId" value=<%=f.id%> >
+                            <input type="hidden" name="folderId" value=<%= folderId %> >
+                            <button type="submit">Delete</button>
+                        </form> 
+                        <form method="GET" action="/downloadFile">
+                            <input type="hidden" name="fileId" value=<%= f.id %> >
+                            <input type="hidden" name="folderId" value=<%= folderId %> >
+                            <button type="submit">Download</button>
+                        </form> 
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+        <div class="form-container">
+            <form action="/uploadFile" method="POST" enctype="multipart/form-data">
+                <label for="file">Choose a file:</label>
+                <input type="file" id="file" name="file" required>
+                <input type="hidden" name="folderId" value="<%= folderId %>">
+                <button type="submit">Upload File</button>
+            </form>
+            <form action="/updateFolder" method="POST">
+                <label>Update Folder</label>
+                <label for="folderName">Folder Name:</label>
+                <input type="text" id="folderName" name="folderName">
+                <input type="hidden" name="folderId" value="<%= folderId %>">
+                <button type="submit">Update folder</button>
+            </form>
+            <form action="/shareFolder" method="GET">
+                <label>Share Folder</label>
+                <label for="duration">How much do you want the link to be valid (in hours)?: </label>
+                <input type="number" id="duration" name="duration">
+                <input type="hidden" name="folderId" value=<%= folderId %>>
+                <button type="submit">Generate Link</button>
+            </form>
+        </div>
+        <a href="/folders">
+            <span>Go back to folders</span>
+        </a>
+  </body>
+</html>
+
+
+
